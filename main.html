@@ -1,0 +1,65 @@
+<!doctype html>
+
+<head>
+    <title>Google consoler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+
+    <head>
+
+    <body>
+        <script async src="https://cse.google.com/cse.js?cx=bc018546df4e6d040"></script>
+        <div class="master">
+        <div class="gcse-search"></div>
+        <div class="gsc-expansionArea" onload="swapper();" ></div>
+        <div class="gcse-tags">
+        	<h1>Websites Results</h1>
+        </div>
+        <script async>
+            jQuery(document).ready(checkContainer);
+            function checkContainer () {
+            if($('div').hasClass('gsc-result')){
+                 //if the container is visible on the page
+                createGrid();  //Adds a grid to the html
+            } 
+            else {
+                console.log('delay');
+                setTimeout(checkContainer, 100); //wait 50 ms, then try again
+            }
+            }
+            function createGrid()
+{
+    
+    var child = document.querySelector('.gsc-result');
+        console.log('test');
+        var arrayurl =[];
+        console.log(child);
+        var text_val = $('.gsc-expansionArea').children('.gsc-webResult').children('.gs-webResult').
+        children('.gsc-url-top').children('.gs-visibleUrl-long').each(function () {
+            arrayurl.push(this.innerHTML);
+        });
+        console.log(arrayurl);
+        //Insert into the div
+        demoP = document.querySelector('.gcse-tags');
+        //Iterate in the div and elements
+
+        arrayurl.forEach(function(item, index) {
+  
+            newlistitem = document.createElement("li"); 
+            newdiv = document.createElement("div");
+            newdiv.setAttribute("style", "border: 5px solid black;");
+            newdiv.setAttribute("id", "div_demo");
+              
+            newdiv.innerHTML = "index[" + index + "]: " + item + "<br>";
+            
+            demoP.appendChild(newlistitem);
+            newlistitem.appendChild(newdiv);
+
+}
+        
+        </script>
+      
+    </body>
+
+</html>
